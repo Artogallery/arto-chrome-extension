@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
+import artwork from '../containers/Artwork/reducer';
 
 
 export default combineReducers({
-  todos
+  artwork
 });

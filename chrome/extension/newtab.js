@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from '../../app/containers/Root';
+import { Provider } from 'react-redux';
+
+import Root from '../../app/containers/App';
 import './newtab.css';
 
 chrome.storage.local.get('state', (obj) => {
@@ -10,7 +12,9 @@ chrome.storage.local.get('state', (obj) => {
   const createStore = require('../../app/store/configureStore');
 
   ReactDOM.render(
-    <Root store={createStore(initialState)} />,
+    <Provider store={createStore(initialState)}>
+      <Root />
+    </Provider>,
     document.querySelector('#root')
   );
 });

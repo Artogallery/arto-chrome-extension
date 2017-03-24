@@ -1,5 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import { createLogger } from 'redux-logger';
+
+import artworkSaga from '../containers/Artwork/sagas';
 import rootReducer from '../reducers';
 import storage from '../utils/storage';
 
@@ -12,17 +15,28 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
   compose;
 /* eslint-enable no-underscore-dangle */
 
+const saga = createSagaMiddleware();
+const logger = createLogger();
+
+const middlewares = [
+  saga,
+  logger,
+];
+
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk),
+  applyMiddleware(...middlewares),
   storage(),
 );
+
 
 export default function (initialState) {
   const store = createStore(rootReducer, initialState, enhancer);
 
+  saga.run(artworkSaga);
+
   if (module.hot) {
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers');
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers');
 
       store.replaceReducer(nextRootReducer);
     });
