@@ -3,34 +3,29 @@ import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 
 import artworkSaga from '../containers/Artwork/sagas';
-import rootReducer from '../reducers';
+import rootReducer from './reducers';
 import storage from '../utils/storage';
 
 // If Redux DevTools Extension is installed use it, otherwise use Redux compose
 /* eslint-disable no-underscore-dangle */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-    // Options: http://zalmoxisus.github.io/redux-devtools-extension/API/Arguments.html
-  }) :
-  compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+//   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+//     // Options: http://zalmoxisus.github.io/redux-devtools-extension/API/Arguments.html
+//   }) :
+//   compose;
 /* eslint-enable no-underscore-dangle */
 
 const saga = createSagaMiddleware();
 const logger = createLogger();
 
-const middlewares = [
-  saga,
-  logger,
-];
-
-const enhancer = composeEnhancers(
-  applyMiddleware(...middlewares),
-  storage(),
-);
-
-
 export default function (initialState) {
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(saga, logger),
+      storage()
+    ));
 
   saga.run(artworkSaga);
 

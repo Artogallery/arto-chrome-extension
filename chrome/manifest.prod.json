@@ -16,7 +16,7 @@
     "page": "background.html"
   },
   "permissions": [ "contextMenus", "tabs", "storage", "http://staging.arto.gallery/*", "https://app.arto.gallery/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;",
+  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src https://app.arto.gallery",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   }

@@ -2,21 +2,29 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import ArtworkImage from '../../components/ArtworkImage';
+import * as ArtworkActions from './actions';
 
 @connect(
   state => ({
+    artwork: state.artwork.artwork
   }),
-  dispatch => ()
+  dispatch => bindActionCreators(ArtworkActions, dispatch)
 )
+
 export default class Artwork extends Component {
+  static propTypes = {
+    fetchArtwork: PropTypes.func,
+    artwork: PropTypes.any
+  }
+
   componentDidMount() {
-    this.props.loadArtwork();
+    this.props.fetchArtwork();
   }
   render() {
+    console.log(this.props.artwork);
     return (
-      <div>
-        Hell World!
-      </div>
+      <ArtworkImage artwork={this.props.artwork} />
     );
   }
 }

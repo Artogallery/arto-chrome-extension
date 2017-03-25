@@ -16,7 +16,7 @@
     "page": "background.html"
   },
   "permissions": [ "contextMenus", "management", "tabs", "storage", "http://staging.arto.gallery/*", "https://app.arto.gallery/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;",
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000 https://app.arto.gallery; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' http://*.cloudfront.net https://production.arto.gallery https://app.arto.gallery data:;",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   }
