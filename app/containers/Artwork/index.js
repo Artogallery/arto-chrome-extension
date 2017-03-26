@@ -7,7 +7,7 @@ import * as ArtworkActions from './actions';
 
 @connect(
   state => ({
-    artwork: state.artwork.artwork
+    artwork: state.artwork,
   }),
   dispatch => bindActionCreators(ArtworkActions, dispatch)
 )
@@ -15,16 +15,17 @@ import * as ArtworkActions from './actions';
 export default class Artwork extends Component {
   static propTypes = {
     fetchArtwork: PropTypes.func,
-    artwork: PropTypes.any
+    artwork: PropTypes.object,
+    isFetching: PropTypes.bool,
   }
 
   componentDidMount() {
     this.props.fetchArtwork();
   }
   render() {
-    console.log(this.props.artwork);
+    const { artwork, isFetching } = this.props.artwork;
     return (
-      <ArtworkImage artwork={this.props.artwork} />
+      <ArtworkImage artwork={artwork} isFetching={isFetching} />
     );
   }
 }

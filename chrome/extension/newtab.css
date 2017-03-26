@@ -1,1 +1,16 @@
-background-color: blue;
+body {
+  overflow: scroll;
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, p, small {
+  cursor: pointer;
+}
+
+h1, p {
+  margin: 10px 0 0 0;
+}
+
+a {
+  text-decoration: none;
+}
