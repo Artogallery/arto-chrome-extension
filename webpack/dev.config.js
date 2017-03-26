@@ -10,7 +10,7 @@ const hotScript = 'webpack-hot-middleware/client?path=__webpack_hmr&dynamicPubli
 const baseDevConfig = () => ({
   devtool: 'cheap-module-source-map',
   entry: {
-    background: [customPath, hotScript, path.join(__dirname, '../chrome/extension/background')],
+    // background: [customPath, hotScript, path.join(__dirname, '../chrome/extension/background')],
     newtab: [customPath, hotScript, path.join(__dirname, '../chrome/extension/newtab')],
   },
   devMiddleware: {

@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
-  "name": "react-chrome-extension-example",
+  "version": "1.0.0",
+  "name": "ARTO Gallery",
   "manifest_version": 2,
-  "description": "Example for react-chrome-extension-boilerplate",
+  "description": "ARTO Gallery Chrome Extension",
   "browser_action": {
-    "default_title": "React Chrome Extension Example",
+    "default_title": "ARTO Gallery Chrome Extension",
     "default_popup": "popup.html"
   },
   "icons": {
@@ -15,7 +15,7 @@
   "background": {
     "page": "background.html"
   },
-  "permissions": [ "contextMenus", "tabs", "storage", "http://staging.arto.gallery/*", "https://app.arto.gallery/*" ],
+  "permissions": [ "tabs", "storage",  "https://app.arto.gallery/*" ],
   "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src https://app.arto.gallery",
   "chrome_url_overrides": {
     "newtab": "newtab.html"

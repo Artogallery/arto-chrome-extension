@@ -2,6 +2,7 @@ import * as types from './constants';
 
 
 export function fetchArtwork() {
+  console.log('fetchingArtwork');
   return {
     type: types.FETCH_ARTWORK_REQUEST
   };

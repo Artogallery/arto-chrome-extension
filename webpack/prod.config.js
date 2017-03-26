@@ -5,8 +5,9 @@ const postCSSConfig = require('./postcss.config');
 const customPath = path.join(__dirname, './customPublicPath');
 
 module.exports = {
+  devtool: 'cheap-module-source-map',
   entry: {
-    background: [customPath, path.join(__dirname, '../chrome/extension/background')],
+    // background: [customPath, path.join(__dirname, '../chrome/extension/background')],
     newtab: [customPath, path.join(__dirname, '../chrome/extension/newtab')]
   },
   output: {
@@ -18,15 +19,16 @@ module.exports = {
     return postCSSConfig;
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.IgnorePlugin(/[^/]+\/[\S]+.dev$/),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      compressor: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   comments: false,
+    //   compressor: {
+    //     warnings: false
+    //   }
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')

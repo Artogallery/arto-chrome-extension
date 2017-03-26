@@ -13,6 +13,7 @@ const actionsMap = {
     };
   },
   [ActionTypes.FETCH_ARTWORK_SUCCESS](state, action) {
+    console.log('success');
     return {
       artwork: action.payload,
       isFetching: false

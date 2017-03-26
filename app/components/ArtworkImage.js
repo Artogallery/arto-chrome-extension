@@ -77,6 +77,7 @@ class ArtworkImage extends Component {
       artwork_url,
     } = this.props.artwork;
 
+
     return (
       <div>
         <main
