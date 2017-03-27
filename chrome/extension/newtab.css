@@ -14,3 +14,12 @@ h1, p {
 a {
   text-decoration: none;
 }
+
+.artwork-appear {
+  opacity: 0;
+}
+
+.artwork-appear.artwork-enter-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}

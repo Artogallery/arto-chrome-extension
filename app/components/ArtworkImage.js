@@ -14,8 +14,17 @@ const styles = StyleSheet.create({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
+    opacity: 0,
+    transition: 'opacity .5s ease-in',
+    visibility: 'hidden'
+  },
+  hidden: {
+    display: 'none',
+    visibility: 'hidden',
+  },
+  reveal: {
     opacity: 1,
-    transition: 'opacity .1s linear',
+    visibility: 'visible'
   },
   aside: {
     position: 'absolute',
@@ -25,7 +34,9 @@ const styles = StyleSheet.create({
     padding: '20px',
     background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 33%, rgba(0,0,0,.4) 66%, rgba(0,0,0,.6) 99%)',
     color: '#fff',
-    textShadow: '0 2px 2px rgba(0,0,0,.5)'
+    textShadow: '0 2px 2px rgba(0,0,0,.5)',
+    opacity: 0,
+    transition: 'opacity .5s linear'
   },
   time: {
     position: 'absolute',
@@ -55,18 +66,27 @@ const styles = StyleSheet.create({
 class ArtworkImage extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date() };
+    this.state = { date: new Date(), show: false };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.timerId = setInterval(
       () => this.tick(),
       1000
     );
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
   tick() {
     this.setState({ date: new Date() });
+  }
+
+  handleImageLoaded = () => {
+    console.log('image loaded');
+    this.setState({ show: true });
   }
 
   render() {
@@ -76,15 +96,22 @@ class ArtworkImage extends Component {
         artist_name,
         provider_name,
         artwork_url,
+        artwork_small_url,
+        thumbnail_url
       } = this.props.artwork;
 
       return (
         <div>
+          <img
+            src={artwork_url}
+            onLoad={this.handleImageLoaded}
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
           <main
-            className={css(styles.artwork)}
+            className={css(styles.artwork, this.state.show && styles.reveal)}
             style={{ backgroundImage: `url(${artwork_url})` }}
           />
-          <section className={css(styles.aside)}>
+          <section className={css(styles.aside, this.state.show && styles.reveal)}>
             <h1 className={css(styles.title)}>{title}</h1>
             <p className={css(styles.paragraph, styles.artistName)}>{artist_name} | {provider_name}</p>
             <p>

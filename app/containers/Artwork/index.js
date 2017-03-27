@@ -5,15 +5,18 @@ import { connect } from 'react-redux';
 import ArtworkImage from '../../components/ArtworkImage';
 import * as ArtworkActions from './actions';
 
+
 class Artwork extends Component {
   static propTypes = {
     fetchArtwork: PropTypes.func,
     artwork: PropTypes.object,
     isFetching: PropTypes.bool,
   }
-  componentDidMount() {
+
+  componentWillMount() {
     this.props.fetchArtwork();
   }
+
   render() {
     const { artwork, isFetching } = this.props.artwork;
     if (this.props.artwork) {

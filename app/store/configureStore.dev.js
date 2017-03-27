@@ -21,7 +21,6 @@ const logger = createLogger();
 export default function (initialState) {
   const store = createStore(
     rootReducer,
-    initialState,
     compose(
       applyMiddleware(saga, logger),
       storage()
