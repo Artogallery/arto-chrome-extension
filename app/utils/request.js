@@ -13,7 +13,6 @@ function checkStatus(response) {
 }
 
 export default function request(url, options) {
-  console.log('requesting');
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON);

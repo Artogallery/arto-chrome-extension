@@ -16,7 +16,7 @@
     "page": "background.html"
   },
   "permissions": [ "tabs", "storage",  "https://app.arto.gallery/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src https://app.arto.gallery",
+  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; connect-src https://app.arto.gallery; img-src 'self' https://*.cloudfront.net https://production.arto.gallery data:",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   }

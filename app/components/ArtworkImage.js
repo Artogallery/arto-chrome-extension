@@ -70,28 +70,34 @@ class ArtworkImage extends Component {
   }
 
   render() {
-    const {
-      title,
-      artist_name,
-      provider_name,
-      artwork_url,
-    } = this.props.artwork;
+    if (this.props.artwork) {
+      const {
+        title,
+        artist_name,
+        provider_name,
+        artwork_url,
+      } = this.props.artwork;
 
-
-    return (
-      <div>
-        <main
-          className={css(styles.artwork)}
-          style={{ backgroundImage: `url(${artwork_url})` }}
-        />
-        <section className={css(styles.aside)}>
-          <h1 className={css(styles.title)}>{title}</h1>
-          <p className={css(styles.paragraph, styles.artistName)}>{artist_name} | {provider_name}</p>
-          <p><a className={css(styles.paragraph)} href="http://arto.gallery">ARTO Gallery</a></p>
-          <h1 className={css(styles.title, styles.time)}>{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</h1>
-        </section>
-      </div>
-    );
+      return (
+        <div>
+          <main
+            className={css(styles.artwork)}
+            style={{ backgroundImage: `url(${artwork_url})` }}
+          />
+          <section className={css(styles.aside)}>
+            <h1 className={css(styles.title)}>{title}</h1>
+            <p className={css(styles.paragraph, styles.artistName)}>{artist_name} | {provider_name}</p>
+            <p>
+              <a className={css(styles.paragraph)} href="http://arto.gallery">ARTO Gallery</a>
+            </p>
+            <h1 className={css(styles.title, styles.time)}>
+              {this.state.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </h1>
+          </section>
+        </div>
+      );
+    }
+    return null;
   }
 }
 
@@ -103,10 +109,9 @@ ArtworkImage.propTypes = {
   artwork: PropTypes.shape({
     title: PropTypes.string.isRequired,
     artwork_url: PropTypes.string.isRequired,
-    artwork_small_url: PropTypes.string.isRequired,
     artist_name: PropTypes.string.isRequired,
     provider_name: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   isFetching: PropTypes.bool.isRequired,
 };
 

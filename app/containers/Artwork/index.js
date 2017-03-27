@@ -15,9 +15,7 @@ class Artwork extends Component {
     this.props.fetchArtwork();
   }
   render() {
-    console.log('container', this.props, this.props.artwork);
     const { artwork, isFetching } = this.props.artwork;
-    console.log(artwork, isFetching);
     if (this.props.artwork) {
       return (
         <ArtworkImage artwork={artwork} isFetching={isFetching} />

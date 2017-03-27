@@ -7,14 +7,13 @@ import rootReducer from './reducers';
 import storage from '../utils/storage';
 
 const saga = createSagaMiddleware();
-const logger = createLogger();
 
 export default function (initialState) {
   const store = createStore(
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(saga, logger),
+      applyMiddleware(saga),
       storage()
     )
   );
