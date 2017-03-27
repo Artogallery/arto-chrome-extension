@@ -4,6 +4,6 @@ Fresh new gorgeous artworks at every tab. Brought to you by [ARTO Gallery](http:
 
 ## Screenshots
 
-![Screenshot1](.github/screenshot1.png)
-![Screenshot2](.github/screenshot2.png)
-![Screenshot3](.github/screenshot3.png)
+![Screenshot1](.github/Screenshot1.png)
+![Screenshot2](.github/Screenshot2.png)
+![Screenshot3](.github/Screenshot3.png)
