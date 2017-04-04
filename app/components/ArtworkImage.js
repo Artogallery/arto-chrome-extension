@@ -92,7 +92,9 @@ class ArtworkImage extends Component {
         artist_name,
         provider_name,
         artwork_url,
+        artwork_profile_url,
         artwork_small_url,
+        artist_profile_url,
         thumbnail_url
       } = this.props.artwork;
 
@@ -108,8 +110,12 @@ class ArtworkImage extends Component {
             style={{ backgroundImage: `url(${artwork_url})` }}
           />
           <section className={css(styles.aside, this.state.show && styles.reveal)}>
-            <h1 className={css(styles.title)}>{title}</h1>
-            <p className={css(styles.paragraph, styles.artistName)}>{artist_name} | {provider_name}</p>
+            <h1 className={css(styles.title)}>
+              <a href={artwork_profile_url}>{title}</a>
+            </h1>
+            <p className={css(styles.artistName)}>
+              <a className={css(styles.paragraph)} href={artist_profile_url}>{artist_name} | {provider_name}</a>
+            </p>
             <p>
               <a className={css(styles.paragraph)} href="http://arto.gallery">ARTO Gallery</a>
             </p>
