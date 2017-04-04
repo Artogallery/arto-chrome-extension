@@ -56,10 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: 100,
   },
   artistName: {
-  },
-  hidden: {
-    display: 'none'
-  },
+  }
 });
 
 
@@ -85,7 +82,6 @@ class ArtworkImage extends Component {
   }
 
   handleImageLoaded = () => {
-    console.log('image loaded');
     this.setState({ show: true });
   }
 

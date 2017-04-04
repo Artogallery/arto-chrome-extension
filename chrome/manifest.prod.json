@@ -2,11 +2,7 @@
   "version": "1.0.0",
   "name": "ARTO Gallery",
   "manifest_version": 2,
-  "description": "ARTO Gallery Chrome Extension",
-  "browser_action": {
-    "default_title": "ARTO Gallery Chrome Extension",
-    "default_popup": "popup.html"
-  },
+  "description": "Beautiful artworks from ARTO Gallery in your new tabs.",
   "icons": {
     "16": "img/icon-16.png",
     "48": "img/icon-48.png",
