@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
+import logo from './artologo.png';
+
 const styles = StyleSheet.create({
   artwork: {
     minHeight: '100%',
@@ -50,6 +52,13 @@ const styles = StyleSheet.create({
     color: '#b8b8b8',
     fontSize: '14px',
     fontWeight: 300,
+  },
+  logo: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    padding: '20px',
+    height: '24px',
   },
   title: {
     fontSize: '30px',
@@ -104,20 +113,53 @@ class ArtworkImage extends Component {
             src={artwork_url}
             onLoad={this.handleImageLoaded}
             style={{ display: 'none', visibility: 'hidden' }}
+            alt={title}
           />
           <main
             className={css(styles.artwork, this.state.show && styles.reveal)}
             style={{ backgroundImage: `url(${artwork_url})` }}
           />
+          <a
+            href="http://arto.gallery"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={logo}
+              alt="ARTO Gallery Logo"
+              className={css(styles.logo)}
+            />
+          </a>
           <section className={css(styles.aside, this.state.show && styles.reveal)}>
             <h1 className={css(styles.title)}>
-              <a href={artwork_profile_url}>{title}</a>
+              <a
+                className={css(styles.paragraph, styles.title)}
+                href={artwork_profile_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {title}
+              </a>
             </h1>
             <p className={css(styles.artistName)}>
-              <a className={css(styles.paragraph)} href={artist_profile_url}>{artist_name} | {provider_name}</a>
+              <a
+                className={css(styles.paragraph)}
+                href={artist_profile_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {artist_name} | {provider_name}
+              </a>
             </p>
             <p>
-              <a className={css(styles.paragraph)} href="http://arto.gallery">ARTO Gallery</a>
+              <a
+                className={css(styles.paragraph)}
+                href="http://arto.gallery"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              ARTO Gallery
+              </a>
             </p>
             <h1 className={css(styles.title, styles.time)}>
               {this.state.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
