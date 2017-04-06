@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 import logo from './artologo.png';
+import Overlay from './Overlay';
 
 const styles = StyleSheet.create({
   artwork: {
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
     top: 0,
     padding: '20px',
     height: '24px',
+    zIndex: '21'
   },
   title: {
     fontSize: '30px',
@@ -119,6 +121,7 @@ class ArtworkImage extends Component {
             className={css(styles.artwork, this.state.show && styles.reveal)}
             style={{ backgroundImage: `url(${artwork_url})` }}
           />
+          <Overlay />
           <a
             href="http://arto.gallery"
             target="_blank"
