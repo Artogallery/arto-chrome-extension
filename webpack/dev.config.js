@@ -47,21 +47,48 @@ const baseDevConfig = () => ({
     extensions: ['', '.js']
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['react-hmre']
+    loaders: [
+      {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.css$/,
+          /\.json$/,
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+        ],
+        loader: 'file-loader',
+      },
+      {
+        test: [
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/
+        ],
+        loader: 'url-loader',
+        options: {
+          limit: 10000
+        }
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['react-hmre']
+        }
+      }, {
+        test: /\.css$/,
+        loaders: [
+          'style',
+          'css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss'
+        ]
       }
-    }, {
-      test: /\.css$/,
-      loaders: [
-        'style',
-        'css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        'postcss'
-      ]
-    }]
+    ]
   }
 });
 

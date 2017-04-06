@@ -7,7 +7,7 @@
     "build": "node scripts/build",
     "compress": "node scripts/compress",
     "compress-keygen": "crx keygen",
-    "clean": "rimraf build/ dev/ *.zip *.crx",
+    "cleanup": "rimraf build/ dev/ *.zip *.crx",
     "lint": "eslint app chrome test scripts webpack/*.js",
     "test-e2e": "cross-env NODE_ENV=test mocha -r ./test/setup-app test/e2e",
     "test": "cross-env NODE_ENV=test mocha -r ./test/setup-app test/app"
@@ -58,6 +58,7 @@
     "postcss-loader": "^1.2.1",
     "pug-cli": "^1.0.0-alpha6",
     "react-addons-test-utils": "^15.4.2",
+    "remote-redux-devtools": "^0.5.7",
     "rimraf": "^2.4.3",
     "selenium-webdriver": "^2.47.0",
     "shelljs": "^0.7.0",
@@ -71,6 +72,7 @@
     "aphrodite": "^1.2.0",
     "bluebird": "^3.3.4",
     "classnames": "^2.2.5",
+    "file-loader": "^0.11.1",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-dock": "^0.2.3",
@@ -78,6 +80,7 @@
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.0",
-    "redux-saga": "^0.14.3"
+    "redux-saga": "^0.14.3",
+    "url-loader": "^0.5.8"
   }
 }

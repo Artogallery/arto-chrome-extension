@@ -5,7 +5,6 @@ const postCSSConfig = require('./postcss.config');
 const customPath = path.join(__dirname, './customPublicPath');
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
   entry: {
     // background: [customPath, path.join(__dirname, '../chrome/extension/background')],
     newtab: [customPath, path.join(__dirname, '../chrome/extension/newtab')]
@@ -38,20 +37,47 @@ module.exports = {
     extensions: ['', '.js']
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['react-optimize']
+    loaders: [
+      {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.css$/,
+          /\.json$/,
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+        ],
+        loader: 'file-loader',
+      },
+      {
+        test: [
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/
+        ],
+        loader: 'url-loader',
+        options: {
+          limit: 10000
+        }
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['react-optimize']
+        }
+      }, {
+        test: /\.css$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss'
+        ]
       }
-    }, {
-      test: /\.css$/,
-      loaders: [
-        'style',
-        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        'postcss'
-      ]
-    }]
+    ]
   }
 };
