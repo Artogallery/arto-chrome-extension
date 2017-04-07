@@ -1,7 +1,8 @@
 body {
-  overflow: scroll;
-  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #000;
+  overflow: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialised;
+  background-color: rgba(0,0,0,.9);
 }
 
 h1, p, small {
@@ -9,7 +10,7 @@ h1, p, small {
 }
 
 h1, p {
-  margin: 10px 0 0 0;
+  margin: 8px 0 0 0;
 }
 
 a {

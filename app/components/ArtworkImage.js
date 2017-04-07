@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
     fontWeight: 300,
   },
   title: {
-    fontSize: '30px',
+    fontSize: '26px',
     fontWeight: 100,
+    letterSpacing: '0px'
   },
 });
 
@@ -74,7 +75,8 @@ class ArtworkImage extends Component {
         artwork_profile_url,
         artwork_small_url,
         artist_profile_url,
-        thumbnail_url
+        thumbnail_url,
+        year
       } = this.props.artwork;
 
       return (
@@ -90,7 +92,9 @@ class ArtworkImage extends Component {
             style={{ backgroundImage: `url(${artwork_url})` }}
           />
           <Overlay />
+
           <BrandLogo url="http://arto.gallery" />
+
           <section className={css(styles.aside, this.state.show && styles.reveal)}>
             <h1 className={css(styles.title)}>
               <a
@@ -99,9 +103,10 @@ class ArtworkImage extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {title}
+                {title} {year && ` | ${year}`}
               </a>
             </h1>
+
             <p className={css(styles.artistName)}>
               <a
                 className={css(styles.paragraph)}
@@ -112,6 +117,7 @@ class ArtworkImage extends Component {
                 {artist_name} | {provider_name}
               </a>
             </p>
+
             <p>
               <a
                 className={css(styles.paragraph)}
@@ -133,17 +139,22 @@ class ArtworkImage extends Component {
 }
 
 ArtworkImage.defaultProps = {
-  artwork: null
+  artwork: null,
+  year: null
 };
 
 ArtworkImage.propTypes = {
   artwork: PropTypes.shape({
     title: PropTypes.string.isRequired,
     artwork_url: PropTypes.string.isRequired,
+    artwork_small_url: PropTypes.string.isRequired,
+    thumbnail_url: PropTypes.string.isRequired,
+    artwork_profile_url: PropTypes.string.isRequired,
+    artist_profile_url: PropTypes.string.isRequired,
     artist_name: PropTypes.string.isRequired,
     provider_name: PropTypes.string.isRequired,
-  }),
-  isFetching: PropTypes.bool.isRequired,
+    year: PropTypes.number,
+  })
 };
 
 export default ArtworkImage;
