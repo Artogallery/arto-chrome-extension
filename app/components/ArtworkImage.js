@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-import logo from './artologo.png';
 import Overlay from './Overlay';
+import Clock from './Clock';
+import BrandLogo from './BrandLogo';
 
 const styles = StyleSheet.create({
   artwork: {
@@ -41,55 +42,22 @@ const styles = StyleSheet.create({
     opacity: 0,
     transition: 'opacity .5s linear'
   },
-  time: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    padding: '20px',
-    color: '#b8b8b8',
-    fontSize: '84px'
-  },
   paragraph: {
     color: '#b8b8b8',
     fontSize: '14px',
     fontWeight: 300,
   },
-  logo: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    padding: '20px',
-    height: '24px',
-    zIndex: '21'
-  },
   title: {
     fontSize: '30px',
     fontWeight: 100,
   },
-  artistName: {
-  }
 });
 
 
 class ArtworkImage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date(), show: false };
-  }
-
-  componentWillMount() {
-    this.timerId = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerId);
-  }
-
-  tick() {
-    this.setState({ date: new Date() });
+  constructor() {
+    super();
+    this.state = { show: false };
   }
 
   handleImageLoaded = () => {
@@ -122,17 +90,7 @@ class ArtworkImage extends Component {
             style={{ backgroundImage: `url(${artwork_url})` }}
           />
           <Overlay />
-          <a
-            href="http://arto.gallery"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src={logo}
-              alt="ARTO Gallery Logo"
-              className={css(styles.logo)}
-            />
-          </a>
+          <BrandLogo url="http://arto.gallery" />
           <section className={css(styles.aside, this.state.show && styles.reveal)}>
             <h1 className={css(styles.title)}>
               <a
@@ -164,9 +122,8 @@ class ArtworkImage extends Component {
               ARTO Gallery
               </a>
             </p>
-            <h1 className={css(styles.title, styles.time)}>
-              {this.state.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            </h1>
+
+            <Clock />
           </section>
         </div>
       );
