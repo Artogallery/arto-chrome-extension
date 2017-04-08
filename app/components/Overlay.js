@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     left: '0px',
     right: '0px',
     bottom: '0px',
-    zIndex: '20',
     background: 'linear-gradient(180deg, rgba(0, 0, 0, .25) 0, transparent 20%, transparent 60%, rgba(0, 0, 0, .3))'
   }
 });
